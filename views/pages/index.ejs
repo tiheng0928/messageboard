@@ -14,7 +14,7 @@
 			databaseURL: "https://nodejs-messageboard.firebaseio.com",
 			storageBucket: "nodejs-messageboard.appspot.com",
 			messagingSenderId: "1058312940015"
-			};
+		};
 		firebase.initializeApp(config);
         // 建立 DB
         var database = firebase.database();  
@@ -46,11 +46,15 @@
         //刪除資料
         function delete_img(id){
             $("#delete").click(function(){
-                firebase.database().ref().child('message/'+id).remove();
+                var del = firebase.database().ref('message/'+id);
+				del.on("child_removed", function(data){
+					var delmsg = data.val();
+					console.log('delete msg:'+delmsg.msg);
+				}
             });
         }
         
-        firebase.database().ref('message/').on('value', function(snapshot) {
+        firebase.database().ref('/message/').on('value', function(snapshot) {
             var message = snapshot.val();
             var key = snapshot.key;
             
@@ -106,6 +110,6 @@
         <li></li>
     </ul>
 
- 
+  
   </body>
 </html>
