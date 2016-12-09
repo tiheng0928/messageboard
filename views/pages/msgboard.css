@@ -1,0 +1,58 @@
+body{
+	background-image: url("../image/background.png");
+}
+.wrap{
+	width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Quicksand', sans-serif,'Noto Sans TC', sans-serif;
+    min-height: 100%;
+    text-align: center;
+}
+h1{
+	font-weight: 400;
+	color: #fff;
+	background: #202B4C;
+	border-radius:8px;
+}
+
+input{
+	text-align: left;
+}
+form{
+	margin-bottom: 30px;
+}
+#messagesli{
+	width: 200px;
+	line-height: 25px;
+	font-size: 16px;
+	font-family: 'Quicksand', sans-serif,'Noto Sans TC', sans-serif;
+	color: #4A4A4A;
+	border: 0px;
+	border-radius: 5px;
+	margin-bottom: 10px;
+	padding-right: 5px;
+	padding-left: 5px;
+	box-sizing: border-box;
+}
+
+.result_area{
+	width: 100%;
+}
+.result{
+	height: 50px;
+	font-size: 14px;
+	background: #202B4C;
+	border-radius: 8px;
+	padding-left: 10px;
+	padding-right: 10px;
+	box-sizing: border-box;
+	line-height: 25px;
+	color: #fff;
+}
+button{
+	font-family: 'Quicksand', sans-serif,'Noto Sans TC', sans-serif;
+	color: #F1FAEE;
+	text-decoration: none;
+	float: right;
+}
