@@ -25,7 +25,10 @@
 				msg: msg,
 				name: name,
 			}).key;
-        }        
+			var updates={};
+			updates['/message/'+key]=postData;
+			return firebase.database().ref().update(updates);
+        }          
         
         $(document).ready(function(){ 
             $("#push_test").click(function(){
@@ -35,34 +38,30 @@
                 push(msg, name);
             }); 
         }); 
+
         //讀取資料
         function display_msg(id, name, msg){
-            
-            //$('<div/>').text(msg).prepend($('<em/>').text(name+': ')).appendTo($('#messagesDiv'));
-            //$('<div/>').append(name+": "+msg).appendTo($('#messagesDiv'));
-            $("#messagesli").append("<li>Name: "+name+"</br> Message: "+msg+" </br><button id='delete'>delete</button><hr></li>").appendTo($('#messagesli'));
-            
+            $("#messagesli").append("<li>Name: "+name+"</br> Message: "+msg+" </br><button id='"+id+"_delete' onclick='reloadPage()'>delete</button><hr></li>")
         }
         //刪除資料
-        function delete_img(id){
-            $("#delete").click(function(){
-                var del = firebase.database().ref('message/'+id);
-				del.on("child_removed", function(data){
-					var delmsg = data.val();
-					console.log('delete msg:'+delmsg.msg);
-				}
+        function delete_msg(id){
+            $("#"+id+"_delete").click(function(){
+                firebase.database().ref().child('/message/'+id).remove();
             });
         }
         
-        firebase.database().ref('/message/').on('value', function(snapshot) {
+        firebase.database().ref('/message/').once('value').then(function(snapshot) {
             var message = snapshot.val();
-            var key = snapshot.key;
             
             $.each(snapshot.val(),function(k,v){
                 display_msg(k,v.name, v.msg)
-                delete_img(k)
+                delete_msg(k)
             })
         });
+		
+		function reloadPage() {
+			window.location.reload();
+		}
         
     </script>
     <style type="text/css">
@@ -104,7 +103,7 @@
     </header>
     <input type="text" id="push_name" placeholder="名字"></br>
     <textarea type="text" id="push_msg" placeholder="訊息"/></textarea></br>
-    <button id="push_test">Send</button></br></br>
+    <button id="push_test" onclick="reloadPage()">Send</button></br></br>
     
     <ul id='messagesli'>
         <li></li>
