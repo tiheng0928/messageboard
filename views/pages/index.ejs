@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Firebase Msgboard</title>
+    <script src="https://www.gstatic.com/firebasejs/3.6.3/firebase.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+      // Initialize Firebase
+		var config = {
+			apiKey: "AIzaSyBWwFFZEZR-B5vnbx844HYxk0erOWNuwV0",
+			authDomain: "nodejs-messageboard.firebaseapp.com",
+			databaseURL: "https://nodejs-messageboard.firebaseio.com",
+			storageBucket: "nodejs-messageboard.appspot.com",
+			messagingSenderId: "1058312940015"
+			};
+		firebase.initializeApp(config);
+        // 建立 DB
+        var database = firebase.database();  
+        
+        //將訊息存入database
+        function push(msg, name) {
+			var key = firebase.database().ref('message/').push({
+				msg: msg,
+				name: name,
+			}).key;
+        }        
+        
+        $(document).ready(function(){ 
+            $("#push_test").click(function(){
+                // $('#messagesDiv').empty();
+                var name = $('#push_name').val();
+                var msg = $('#push_msg').val();
+                push(msg, name);
+            }); 
+        }); 
+        //讀取資料
+        function display_msg(id, name, msg){
+            
+            //$('<div/>').text(msg).prepend($('<em/>').text(name+': ')).appendTo($('#messagesDiv'));
+            //$('<div/>').append(name+": "+msg).appendTo($('#messagesDiv'));
+            $("#messagesli").append("<li>Name: "+name+"</br> Message: "+msg+" </br><button id='delete'>delete</button><hr></li>").appendTo($('#messagesli'));
+            
+        }
+        //刪除資料
+        function delete_img(id){
+            $("#delete").click(function(){
+                firebase.database().ref().child('message/'+id).remove();
+            });
+        }
+        
+        firebase.database().ref('message/').on('value', function(snapshot) {
+            var message = snapshot.val();
+            var key = snapshot.key;
+            
+            $.each(snapshot.val(),function(k,v){
+                display_msg(k,v.name, v.msg)
+                delete_img(k)
+            })
+        });
+        
+    </script>
+    <style type="text/css">
+        body {
+            text-align: center;
+            font-family: 'Nunito', sans-serif;
+            color: #384047;
+        }
+        header{
+            text-align: center;
+        }
+        input{
+            width: 300px;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        textarea{
+            width: 300px;
+            height: 50px;
+            font-size: 18px;
+        }
+        ul{
+            margin: 0 auto;
+            width: 400px;
+            list-style-type:none;
+        }
+        li{
+            margin-bottom: 5px;
+            text-align: left;
+        }
+        hr{
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>留言板</h1>
+    </header>
+    <input type="text" id="push_name" placeholder="名字"></br>
+    <textarea type="text" id="push_msg" placeholder="訊息"/></textarea></br>
+    <button id="push_test">Send</button></br></br>
+    
+    <ul id='messagesli'>
+        <li></li>
+    </ul>
+
+    <footer>
+        <% include ../partials/footer %>
+    </footer>
+  </body>
+</html>

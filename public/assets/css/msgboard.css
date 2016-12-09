@@ -1,0 +1,118 @@
+body{
+	background-image: url("../image/background.png");
+}
+.wrap{
+	width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Quicksand', sans-serif,'Noto Sans TC', sans-serif;
+    min-height: 100%;
+    text-align: center;
+}
+h1{
+	font-weight: 400;
+	color: #fff;
+	background: #202B4C;
+	border-radius:8px;
+}
+h2{
+	width: 100px;
+	line-height: 40px;
+	text-align: center;
+	font-weight: 400;
+	color: #fff;
+	background: #202B4C;
+	border-radius:8px;
+}
+.content{
+	text-align: left;
+}
+form{
+	margin-bottom: 30px;
+}
+.name_blank{
+	width: 200px;
+	line-height: 25px;
+	font-size: 16px;
+	font-family: 'Quicksand', sans-serif,'Noto Sans TC', sans-serif;
+	color: #4A4A4A;
+	border: 0px;
+	border-radius: 5px;
+	margin-bottom: 10px;
+	padding-right: 5px;
+	padding-left: 5px;
+	box-sizing: border-box;
+}
+.content_blank{
+	width: 450px;
+	height: 200px;
+	resize : none;
+	font-size: 16px;
+	font-family: 'Quicksand', sans-serif,'Noto Sans TC', sans-serif;
+	overflow: auto;
+	color: #4A4A4A;
+	border: 0px;
+	border-radius: 8px;
+	margin-bottom: 5px;
+	padding-right: 5px;
+	padding-left: 5px;
+}
+.btn{
+	width: 80px;
+	height: 25px;
+	border: 1px solid #202B4C;
+	border-radius: 3px;
+	background: #fff;
+	font-family: 'Quicksand', sans-serif;
+	color: #2F3E6D;
+	opacity: 0.8;
+	cursor: pointer;
+	margin-left: 5px;
+}
+.btn:hover{
+	opacity: 1;
+	background: #202B4C;
+	color: #fff;
+	-webkit-transition: 0.5s;
+}
+.btn_2{
+	width: 80px;
+	height: 25px;
+	border: 1px solid #FB5607;
+	border-radius: 3px;
+	background: #fff;
+	font-family: 'Quicksand', sans-serif;
+	color: #FB5607;
+	opacity: 0.8;
+	cursor: pointer;
+	margin-left: 5px;
+}
+.btn_2:hover{
+	opacity: 1;
+	background: #FB5607;
+	color: #fff;
+	-webkit-transition: 0.5s;
+}
+.result_area{
+	width: 100%;
+}
+.result{
+	height: 50px;
+	font-size: 14px;
+	background: #202B4C;
+	border-radius: 8px;
+	padding-left: 10px;
+	padding-right: 10px;
+	box-sizing: border-box;
+	line-height: 25px;
+	color: #fff;
+}
+a{
+	font-family: 'Quicksand', sans-serif,'Noto Sans TC', sans-serif;
+	color: #F1FAEE;
+	text-decoration: none;
+	float: right;
+}
+a:hover{
+	color: #A8DADC;
+}
